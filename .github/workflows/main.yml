@@ -2,14 +2,14 @@ name: Робочий процес ${{ github.actor }} для PR
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize] # Активується при відкритті, повторному відкритті або синхронізації PR
+    types: [opened, reopened, synchronize]
 
 env:
-  GITHUB_ACTIONS: "true" # Встановлення змінної середовища на рівні робочого процесу
+  GITHUB_ACTIONS: "true"
 
 jobs:
   github-task-job:
-    runs-on: ubuntu-latest # Виконання на останній версії Ubuntu
+    runs-on: ubuntu-latest
 
     steps:
       - name: Відображення змінної середовища GITHUB_ACTIONS
