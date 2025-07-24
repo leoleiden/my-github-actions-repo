@@ -18,10 +18,22 @@ jobs:
         run: 'echo "Змінна середовища GITHUB_ACTIONS: $GITHUB_ACTIONS"'
 
       - name: "Показати назву гілки та репозиторію"
-        run: 'echo "Назва гілки: ${{ github.ref }}"; echo "Назва репозиторію: ${{ github.repository }}"'
+        run: |
+          echo "Подія: ${{ github.event_name }}"
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "Назва гілки (для PR): ${{ github.head_ref }}"
+          else
+            echo "Назва гілки (для push): ${{ github.ref }}"
+          fi
+          echo "Назва репозиторію: ${{ github.repository }}"
 
       - name: "Відображення події, що ініціювала запуск робочого процесу"
         run: 'echo "Подія, що ініціювала цей робочий процес: ${{ github.event_name }}"'
 
       - name: "Показати всі контекстні змінні GitHub"
-        run: 'echo "${{ toJson(github) }}"'
+        # Використовуйте багаторядковий літерал з 'cat' та 'EOF' для безпечного виводу JSON
+        run: |
+          echo "Повний контекст GitHub:"
+          cat <<EOF_GITHUB_CONTEXT
+          ${{ toJSON(github) }}
+          EOF_GITHUB_CONTEXT
