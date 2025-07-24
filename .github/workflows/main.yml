@@ -1,0 +1,24 @@
+name: Робочий процес ${{ github.actor }} для PR
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize] # Активується при відкритті, повторному відкритті або синхронізації PR
+
+env:
+  GITHUB_ACTIONS: "true" # Встановлення змінної середовища на рівні робочого процесу
+
+jobs:
+  github-task-job:
+    runs-on: ubuntu-latest # Виконання на останній версії Ubuntu
+
+    steps:
+      - name: Відображення змінної середовища GITHUB_ACTIONS
+        run: echo "Змінна середовища GITHUB_ACTIONS: $GITHUB_ACTIONS"
+
+      - name: Показати назву гілки та репозиторію
+        run: |
+          echo "Назва гілки: ${{ github.head_ref }}"
+          echo "Назва репозиторію: ${{ github.repository }}"
+
+      - name: Відображення події, що ініціювала запуск робочого процесу
+        run: echo "Подія, що ініціювала цей робочий процес: ${{ github.event_name }}"
