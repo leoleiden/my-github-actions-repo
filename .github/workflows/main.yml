@@ -12,14 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Відображення змінної середовища GITHUB_ACTIONS"
-        run: |
-          echo "Змінна середовища GITHUB_ACTIONS: $GITHUB_ACTIONS"
+        run: 'echo "Змінна середовища GITHUB_ACTIONS: $GITHUB_ACTIONS"'
 
       - name: "Показати назву гілки та репозиторію"
-        run: |
-          echo "Назва гілки: ${{ github.head_ref }}"
-          echo "Назва репозиторію: ${{ github.repository }}"
+        run: 'echo "Назва гілки: ${{ github.head_ref }}"; echo "Назва репозиторію: ${{ github.repository }}"'
 
       - name: "Відображення події, що ініціювала запуск робочого процесу"
-        run: |
-          echo "Подія, що ініціювала цей робочий процес: ${{ github.event_name }}"
+        run: 'echo "Подія, що ініціювала цей робочий процес: ${{ github.event_name }}"'
