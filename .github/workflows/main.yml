@@ -1,4 +1,4 @@
-name: "Робочий процес для PR та push"
+name: "New Github actions repo by ${{ github.actor }}"
 
 on:
   push:
